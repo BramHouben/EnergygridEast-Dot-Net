@@ -9,7 +9,7 @@
           "Port": 8090
         }
       ],
-      "UpstreamPathTemplate": "/api/solarpark/{everything}",
+      "UpstreamPathTemplate": "/solarpark/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
@@ -21,7 +21,7 @@
           "Port": 8100
         }
       ],
-      "UpstreamPathTemplate": "/api/auth/{everything}",
+      "UpstreamPathTemplate": "/auth/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
@@ -33,7 +33,7 @@
           "Port": 8110
         }
       ],
-      "UpstreamPathTemplate": "/api/weather/{everything}",
+      "UpstreamPathTemplate": "/weather/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
@@ -45,7 +45,7 @@
           "Port": 8120
         }
       ],
-      "UpstreamPathTemplate": "/api/simulation/{everything}",
+      "UpstreamPathTemplate": "/simulation/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
@@ -57,7 +57,19 @@
           "Port": 8130
         }
       ],
-      "UpstreamPathTemplate": "/api/user/{everything}",
+      "UpstreamPathTemplate": "/user/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "http://localhost",
+          "Port": 8140
+        }
+      ],
+      "UpstreamPathTemplate": "/region/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ],
