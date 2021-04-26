@@ -35,6 +35,7 @@ namespace Gateway
                 };
             });
 
+            services.AddCors();
             services.AddOcelot();
         }
 
