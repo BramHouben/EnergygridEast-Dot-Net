@@ -1,11 +1,35 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/simulationsolar/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "http://localhost",
+          "Host": "localhost",
+          "Port": 8120
+        }
+      ],
+      "UpstreamPathTemplate": "/simulationsolar/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/simulationwind/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationwindservice",
+          "Port": 8140
+        }
+      ],
+      "UpstreamPathTemplate": "/simulationwind/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/solarpark/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "solarparkservice",
           "Port": 8090
         }
       ],
@@ -13,11 +37,11 @@
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/auth/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "http://localhost",
+          "Host": "authenticationservice",
           "Port": 8100
         }
       ],
@@ -25,11 +49,11 @@
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/weather/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "http://localhost",
+          "Host": "weatherservice",
           "Port": 8110
         }
       ],
@@ -37,23 +61,11 @@
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/user/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "http://localhost",
-          "Port": 8120
-        }
-      ],
-      "UpstreamPathTemplate": "/simulation/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
-    },
-    {
-      "DownstreamPathTemplate": "/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "http://localhost",
+          "Host": "userservice",
           "Port": 8130
         }
       ],
@@ -61,12 +73,12 @@
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/region/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "http://localhost",
-          "Port": 8140
+          "Host": "regionservice",
+          "Port": 8150
         }
       ],
       "UpstreamPathTemplate": "/region/{everything}",
@@ -74,6 +86,6 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:8081"
+    "BaseUrl": "localhost:8081"
   }
 }
