@@ -34,13 +34,8 @@ namespace Gateway
                     ValidateAudience = true
                 };
             });
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-            });
+
+            services.AddCors();
             services.AddOcelot();
         }
 
@@ -53,8 +48,13 @@ namespace Gateway
             }
 
             app.UseRouting();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
             app.UseAuthentication();
-            app.UseCors("CorsPolicy");
             app.UseOcelot();
         }
     }
