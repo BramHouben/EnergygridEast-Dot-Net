@@ -61,7 +61,7 @@
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
-      "DownstreamPathTemplate": "/user/{everything}",
+      "DownstreamPathTemplate": "/userservice/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -69,23 +69,8 @@
           "Port": 8130
         }
       ],
-      "UpstreamPathTemplate": "/user/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
-    },
-    {
-      "DownstreamPathTemplate": "/region/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "regionservice",
-          "Port": 8150
-        }
-      ],
-      "UpstreamPathTemplate": "/region/{everything}",
+      "UpstreamPathTemplate": "/userservice/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
-  ],
-  "GlobalConfiguration": {
-    "BaseUrl": "localhost:8081"
-  }
+  ]
 }

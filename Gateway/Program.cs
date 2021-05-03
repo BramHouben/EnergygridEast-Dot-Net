@@ -19,7 +19,6 @@ namespace Gateway
                     webBuilder.UseStartup<Startup>();
                     webBuilder.ConfigureAppConfiguration(config =>
                         config.AddJsonFile("ocelot.json")); // TODO remove .Development in production builds
-
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
