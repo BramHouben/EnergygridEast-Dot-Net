@@ -71,6 +71,18 @@
       ],
       "UpstreamPathTemplate": "/userservice/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/energybalance/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "energybalanceservice",
+          "Port": 8160
+        }
+      ],
+      "UpstreamPathTemplate": "/energybalance/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ]
 }
