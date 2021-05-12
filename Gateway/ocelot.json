@@ -95,6 +95,42 @@
       ],
       "UpstreamPathTemplate": "/energybalance/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/scenario/solar/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationsolarservice",
+          "Port": 8120
+        }
+      ],
+      "UpstreamPathTemplate": "/scenario/solar/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/scenario/wind/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationwindservice",
+          "Port": 8140
+        }
+      ],
+      "UpstreamPathTemplate": "/scenario/wind/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/usage/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "energyusageservice",
+          "Port": 8170
+        }
+      ],
+      "UpstreamPathTemplate": "/usage/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ]
 }
