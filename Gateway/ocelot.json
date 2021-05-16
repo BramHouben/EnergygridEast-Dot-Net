@@ -130,7 +130,7 @@
           "Port": 8150
         }
       ],
-      "UpstreamPathTemplate": "/usage/{everything}",
+      "UpstreamPathTemplate": "/region/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
