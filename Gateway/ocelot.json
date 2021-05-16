@@ -10,7 +10,7 @@
         }
       ],
       "UpstreamPathTemplate": "/simulationsolar/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/simulationwind/{everything}",
@@ -22,7 +22,7 @@
         }
       ],
       "UpstreamPathTemplate": "/simulationwind/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/solarpark/{everything}",
@@ -34,10 +34,10 @@
         }
       ],
       "UpstreamPathTemplate": "/solarpark/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
     },
     {
-      "DownstreamPathTemplate": "/auth/{everything}",
+      "DownstreamPathTemplate": "/authentication/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -45,8 +45,8 @@
           "Port": 8100
         }
       ],
-      "UpstreamPathTemplate": "/auth/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+      "UpstreamPathTemplate": "/authentication/{everything}",
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/weather/{everything}",
@@ -58,7 +58,7 @@
         }
       ],
       "UpstreamPathTemplate": "/weather/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
     },
     {
       "DownstreamPathTemplate": "/user/{everything}",
@@ -70,22 +70,67 @@
         }
       ],
       "UpstreamPathTemplate": "/user/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
     },
     {
-      "DownstreamPathTemplate": "/region/{everything}",
+      "DownstreamPathTemplate": "/user",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "regionservice",
-          "Port": 8150
+          "Host": "userservice",
+          "Port": 8130
         }
       ],
-      "UpstreamPathTemplate": "/region/{everything}",
-      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+      "UpstreamPathTemplate": "/user",
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+    },
+    {
+      "DownstreamPathTemplate": "/energybalance/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "energybalanceservice",
+          "Port": 8160
+        }
+      ],
+      "UpstreamPathTemplate": "/energybalance/{everything}",
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+    },
+    {
+      "DownstreamPathTemplate": "/scenario/solar/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationsolarservice",
+          "Port": 8120
+        }
+      ],
+      "UpstreamPathTemplate": "/scenario/solar/{everything}",
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+    },
+    {
+      "DownstreamPathTemplate": "/scenario/wind/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationwindservice",
+          "Port": 8140
+        }
+      ],
+      "UpstreamPathTemplate": "/scenario/wind/{everything}",
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+    },
+    {
+      "DownstreamPathTemplate": "/usage/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "energyusageservice",
+          "Port": 8170
+        }
+      ],
+      "UpstreamPathTemplate": "/usage/{everything}",
+      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
     }
-  ],
-  "GlobalConfiguration": {
-    "BaseUrl": "localhost:8081"
-  }
+  ]
 }
