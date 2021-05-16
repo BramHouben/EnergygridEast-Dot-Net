@@ -144,6 +144,18 @@
       ],
       "UpstreamPathTemplate": "/usage/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/region/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "regionservice",
+          "Port": 8170
+        }
+      ],
+      "UpstreamPathTemplate": "/region/{everything}",
+      "UpstreamHttpMethod": [ "GET" ]
     }
   ]
 }
