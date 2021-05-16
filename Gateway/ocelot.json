@@ -120,6 +120,19 @@
       "UpstreamPathTemplate": "/scenario/wind/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
+
+    {
+      "DownstreamPathTemplate": "/region/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "regionservice",
+          "Port": 8150
+        }
+      ],
+      "UpstreamPathTemplate": "/usage/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
     {
       "DownstreamPathTemplate": "/usage/{everything}",
       "DownstreamScheme": "http",
