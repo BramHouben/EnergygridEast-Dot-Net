@@ -1,3 +1,4 @@
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -16,14 +17,16 @@ namespace Gateway
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureAppConfiguration((builder) =>
+                    {
+                        builder.SetBasePath(Directory.GetCurrentDirectory())
+                            .AddJsonFile("config/appsettings.Kubernetes.json", true)
+                            .AddJsonFile("config/ocelot.Kubernetes.json", true)
+                            .AddJsonFile("ocelot.Development.json", true)
+                            .AddJsonFile("appsettings.Development.json", true)
+                            .AddEnvironmentVariables();
+                    });
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.ConfigureAppConfiguration(config =>
-                        config.AddJsonFile("ocelot.json"));
-                })
-                .ConfigureLogging((hostingContext, logging) =>
-                {
-                    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                    logging.AddConsole();
                 });
     }
 }
