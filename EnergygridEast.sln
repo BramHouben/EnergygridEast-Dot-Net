@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "Gateway\Gateway.
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{50042D22-64A5-4E3F-9800-09F748BF1183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyMarketApi", "..\EnergyMarketApi\EnergyMarketApi.csproj", "{93B93E35-1B68-4CA5-AFAB-CC3AF652CD5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnergyMarketApi", "EnergyMarketApi\EnergyMarketApi.csproj", "{C4E049D4-D801-4A0E-A35B-B1D3C2CF51D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{50042D22-64A5-4E3F-9800-09F748BF1183}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50042D22-64A5-4E3F-9800-09F748BF1183}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50042D22-64A5-4E3F-9800-09F748BF1183}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93B93E35-1B68-4CA5-AFAB-CC3AF652CD5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93B93E35-1B68-4CA5-AFAB-CC3AF652CD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93B93E35-1B68-4CA5-AFAB-CC3AF652CD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93B93E35-1B68-4CA5-AFAB-CC3AF652CD5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4E049D4-D801-4A0E-A35B-B1D3C2CF51D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4E049D4-D801-4A0E-A35B-B1D3C2CF51D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4E049D4-D801-4A0E-A35B-B1D3C2CF51D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4E049D4-D801-4A0E-A35B-B1D3C2CF51D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

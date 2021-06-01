@@ -1,11 +1,7 @@
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EnergyMarketApi
 {
@@ -20,6 +16,13 @@ namespace EnergyMarketApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureAppConfiguration((builder) =>
+                    {
+                        builder.SetBasePath(Directory.GetCurrentDirectory())
+                            .AddJsonFile("appsettings.Development.json", true)
+                            .AddJsonFile("config/appsettings.Kubernetes.json", true)
+                            .AddEnvironmentVariables();
+                    });
                     webBuilder.UseStartup<Startup>();
                 });
     }

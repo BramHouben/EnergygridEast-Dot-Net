@@ -22,14 +22,16 @@ namespace EnergyMarketApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            AddDependencyInjection(ref services);
             services.AddControllers();
+            AddDependencyInjection(ref services);
         }
 
         private void AddDependencyInjection(ref IServiceCollection services)
         {
             services.AddSingleton(service => new RabbitMqChannel().GetChannel());
-            services.AddScoped<MarketLogic>();
+            services.AddTransient<MarketLogic>();
+            services.AddTransient<BuyConsumer>();
+            services.AddTransient<SellConsumer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

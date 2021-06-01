@@ -8,3 +8,10 @@ services:
       dockerfile: Gateway/Dockerfile
     ports:
         - "8081:80"
+
+  energymarketapi:
+    image: ${DOCKER_REGISTRY-}energymarketapi
+    build:
+      context: .
+      dockerfile: EnergyMarketApi/Dockerfile
+
