@@ -5,12 +5,12 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
+          "Host": "simulationsolarservice",
           "Port": 8120
         }
       ],
       "UpstreamPathTemplate": "/simulationsolar/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/simulationwind/{everything}",
@@ -22,7 +22,7 @@
         }
       ],
       "UpstreamPathTemplate": "/simulationwind/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/solarpark/{everything}",
@@ -34,7 +34,7 @@
         }
       ],
       "UpstreamPathTemplate": "/solarpark/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/authentication/{everything}",
@@ -46,7 +46,7 @@
         }
       ],
       "UpstreamPathTemplate": "/authentication/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/weather/{everything}",
@@ -58,7 +58,7 @@
         }
       ],
       "UpstreamPathTemplate": "/weather/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/user/{everything}",
@@ -70,7 +70,7 @@
         }
       ],
       "UpstreamPathTemplate": "/user/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/user",
@@ -82,7 +82,7 @@
         }
       ],
       "UpstreamPathTemplate": "/user",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/energybalance/{everything}",
@@ -94,7 +94,7 @@
         }
       ],
       "UpstreamPathTemplate": "/energybalance/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/scenario/solar/{everything}",
@@ -106,7 +106,7 @@
         }
       ],
       "UpstreamPathTemplate": "/scenario/solar/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/scenario/wind/{everything}",
@@ -118,7 +118,7 @@
         }
       ],
       "UpstreamPathTemplate": "/scenario/wind/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
       "DownstreamPathTemplate": "/usage/{everything}",
@@ -130,7 +130,31 @@
         }
       ],
       "UpstreamPathTemplate": "/usage/{everything}",
-      "UpstreamHttpMethod": ["GET", "PUT", "POST", "DELETE"]
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/solar/production/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationsolarservice",
+          "Port": 8120
+        }
+      ],
+      "UpstreamPathTemplate": "/solar/production/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ws/update/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "websocketsservice",
+          "Port": 8443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ws/update/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ]
 }
