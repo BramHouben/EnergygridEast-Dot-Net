@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace EnergyMarketApi.Logic
             _bearer = GetBearer().Result;
         }
 
-        public async Task<string> GetBearer()
+        private async Task<string> GetBearer()
         {
             var login = new
             {
@@ -61,6 +62,16 @@ namespace EnergyMarketApi.Logic
                 DateTime = DateTime.UtcNow,
                 EnergyHistoryType = ActionType.Sell
             });
+        }
+
+        public async Task<List<EnergyHistoryDto>> All(int total)
+        {
+            if (total == 0)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            return await _energyHistoryDal.All(total);
         }
     }
 }

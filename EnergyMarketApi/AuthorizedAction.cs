@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using RequestHeaders = EnergyMarketApi.Model.Helper.RequestHeaders;
 
 namespace EnergyMarketApi
 {
@@ -31,7 +32,7 @@ namespace EnergyMarketApi
             string authorization = context.HttpContext.Request.Headers[RequestHeaders.Authorization];
             string jwt = authorization.Replace("Bearer ", "");
 
-            var role = jwtLogic.GetClaim<AccountRole>(jwt, JwtClaim.AccountRole);
+            var role = jwtLogic.GetClaim<AccountRole>(jwt, JwtClaim.Role);
             if (!_requiredRoles.Contains(role))
             {
                 context.Result = new UnauthorizedResult();

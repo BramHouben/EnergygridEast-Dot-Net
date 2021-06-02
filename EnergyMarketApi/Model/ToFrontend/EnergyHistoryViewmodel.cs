@@ -1,7 +1,7 @@
 ﻿using System;
 using EnergyMarketApi.Enum;
 
-namespace EnergyMarketApi.Model.FromFrontend
+namespace EnergyMarketApi.Model.ToFrontend
 {
     public class EnergyHistoryViewmodel
     {

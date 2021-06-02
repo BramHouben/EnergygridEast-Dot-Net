@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EnergyMarketApi.Model.Dto;
-using EnergyMarketApi.Model.FromFrontend;
+using EnergyMarketApi.Model.ToFrontend;
 
 namespace EnergyMarketApi.Model.Helper
 {
