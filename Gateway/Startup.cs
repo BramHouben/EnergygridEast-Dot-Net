@@ -1,9 +1,10 @@
+using System;
+using System.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Text;
-using Gateway.Models.HelperFiles;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -25,10 +26,12 @@ namespace Gateway
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var jwtConfig = Configuration
-                .GetSection("JwtConfig")
-                .Get<JwtConfig>();
-            string secret = jwtConfig.Secret;
+            string secret = Environment.GetEnvironmentVariable("JWTSECRET");
+            if (string.IsNullOrEmpty(secret))
+            {
+                throw new NoNullAllowedException("JWTSECRET environment variable not set. This value cannot be empty");
+            }
+
             var key = Encoding.ASCII.GetBytes(secret);
 
             services.AddAuthentication(option =>
