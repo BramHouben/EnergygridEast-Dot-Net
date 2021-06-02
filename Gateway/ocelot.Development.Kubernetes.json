@@ -155,6 +155,18 @@
       ],
       "UpstreamPathTemplate": "/api/ws/update/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ws-energy-grid/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "websocketsservice",
+          "Port": 8443
+        }
+      ],
+      "UpstreamPathTemplate": "/ws-energy-grid/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ]
 }
