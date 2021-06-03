@@ -167,6 +167,30 @@
       ],
       "UpstreamPathTemplate": "/ws-energy-grid/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/simulation/nuclear/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationnuclearservice",
+          "Port": 8180
+        }
+      ],
+      "UpstreamPathTemplate": "/simulation/nuclear/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/scenario/nuclear/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationnuclearservice",
+          "Port": 8180
+        }
+      ],
+      "UpstreamPathTemplate": "/scenario/nuclear/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ]
 }
