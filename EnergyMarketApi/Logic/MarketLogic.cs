@@ -1,12 +1,12 @@
-﻿using System;
+﻿using EnergyMarketApi.Dal.Interface;
+using EnergyMarketApi.Enum;
+using EnergyMarketApi.Model.Dto;
+using EnergyMarketApi.Model.RabbitMq;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using EnergyMarketApi.Dal.Interface;
-using EnergyMarketApi.Enum;
-using EnergyMarketApi.Model.Dto;
-using EnergyMarketApi.Model.RabbitMq;
 
 namespace EnergyMarketApi.Logic
 {

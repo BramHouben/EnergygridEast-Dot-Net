@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using EnergyMarketApi.Enum;
 using EnergyMarketApi.Logic;
 using EnergyMarketApi.Model.Dto;
 using EnergyMarketApi.Model.ToFrontend;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EnergyMarketApi.Controllers
 {

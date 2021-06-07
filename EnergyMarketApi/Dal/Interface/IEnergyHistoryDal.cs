@@ -1,7 +1,7 @@
-﻿using System;
+﻿using EnergyMarketApi.Model.Dto;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EnergyMarketApi.Model.Dto;
 
 namespace EnergyMarketApi.Dal.Interface
 {

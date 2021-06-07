@@ -1,9 +1,9 @@
-﻿using System;
+﻿using EnergyMarketApi.Enum;
+using Microsoft.IdentityModel.JsonWebTokens;
+using System;
 using System.Data;
 using System.Globalization;
 using System.Linq;
-using EnergyMarketApi.Enum;
-using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace EnergyMarketApi.Logic
 {

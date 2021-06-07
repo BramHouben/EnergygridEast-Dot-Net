@@ -1,10 +1,9 @@
-﻿using System;
-using System.Text;
-using EnergyMarketApi.Logic;
+﻿using EnergyMarketApi.Logic;
 using EnergyMarketApi.Model.Helper;
 using EnergyMarketApi.Model.RabbitMq;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Text;
 
 namespace EnergyMarketApi.RabbitMq.Consumers
 {

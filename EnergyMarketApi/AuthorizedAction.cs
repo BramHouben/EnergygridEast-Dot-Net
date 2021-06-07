@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using EnergyMarketApi.Enum;
+﻿using EnergyMarketApi.Enum;
 using EnergyMarketApi.Logic;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Linq;
 using RequestHeaders = EnergyMarketApi.Model.Helper.RequestHeaders;
 
 namespace EnergyMarketApi

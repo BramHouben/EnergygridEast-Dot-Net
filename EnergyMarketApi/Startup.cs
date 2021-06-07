@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text.Json.Serialization;
 using EnergyMarketApi.Dal;
 using EnergyMarketApi.Dal.Interface;
 using EnergyMarketApi.Logic;
@@ -14,6 +10,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text.Json.Serialization;
 
 namespace EnergyMarketApi
 {
