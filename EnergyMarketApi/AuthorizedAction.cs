@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using EnergyMarketApi.Enum;
+﻿using EnergyMarketApi.Enum;
 using EnergyMarketApi.Logic;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Linq;
 using RequestHeaders = EnergyMarketApi.Model.Helper.RequestHeaders;
 
 namespace EnergyMarketApi
@@ -30,6 +29,13 @@ namespace EnergyMarketApi
 
             JwtLogic jwtLogic = (JwtLogic)context.HttpContext.RequestServices.GetService(typeof(JwtLogic));
             string authorization = context.HttpContext.Request.Headers[RequestHeaders.Authorization];
+            if (string.IsNullOrEmpty(authorization))
+            {
+                context.Result = new UnauthorizedResult();
+                base.OnActionExecuting(context);
+                return;
+            }
+
             string jwt = authorization.Replace("Bearer ", "");
 
             var role = jwtLogic.GetClaim<AccountRole>(jwt, JwtClaim.Role);

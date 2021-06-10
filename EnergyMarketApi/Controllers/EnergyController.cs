@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EnergyMarketApi.Enum;
 using EnergyMarketApi.Logic;
 using EnergyMarketApi.Model.Dto;
 using EnergyMarketApi.Model.ToFrontend;

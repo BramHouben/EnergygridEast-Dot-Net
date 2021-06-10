@@ -1,5 +1,5 @@
-﻿using System;
-using EnergyMarketApi.Enum;
+﻿using EnergyMarketApi.Enum;
+using System;
 
 namespace EnergyMarketApi.Model.Dto
 {
