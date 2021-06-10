@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using EnergyMarketApi.Enum;
 using EnergyMarketApi.Logic;
 using EnergyMarketApi.Model.Dto;
 using EnergyMarketApi.Model.ToFrontend;
@@ -36,7 +35,7 @@ namespace EnergyMarketApi.Controllers
             {
                 return UnprocessableEntity();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

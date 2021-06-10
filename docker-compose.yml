@@ -19,7 +19,7 @@ services:
     ports:
         - "8082:80"
     environment:
-      ENERGYMARKET_APIURL: http://shielded-bastion-42632.herokuapp.com/api/login/
+      ENERGYMARKET_APIURL: http://shielded-bastion-42632.herokuapp.com/api/
       ENERGYMARKET_USERNAME: NLOost
       ENERGYMARKET_PASSWORD: "#NLOost2"
       CONNECTIONSTRING: database=energymarket;keepalive=5;server=energymarket-db;port=3306;user id=energymarket;password=iugerhuerhuefrwhoiuhew;connectiontimeout=5
