@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using AutoMapper;
-using EnergyMarketApi.Enum;
+﻿using AutoMapper;
 using EnergyMarketApi.Logic;
 using EnergyMarketApi.Model.Dto;
 using EnergyMarketApi.Model.ToFrontend;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EnergyMarketApi.Controllers
 {
-    [AuthorizedAction(new[] { AccountRole.CUSTOMER, AccountRole.LARGE_SCALE_CUSTOMER,
-        AccountRole.UTILITY_COMPANY, AccountRole.RESPONSIBLE_PARTY, AccountRole.ADMIN })]
     [Route("energymarket")]
     [ApiController]
     public class EnergyController : ControllerBase
@@ -26,19 +23,19 @@ namespace EnergyMarketApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{total}")]
-        public async Task<ActionResult<List<EnergyHistoryViewmodel>>> All(int total)
+        [HttpGet]
+        public async Task<ActionResult<List<EnergyHistoryViewmodel>>> All()
         {
             try
             {
-                List<EnergyHistoryDto> historyCollection = await _marketLogic.All(total);
+                List<EnergyHistoryDto> historyCollection = await _marketLogic.All(4);
                 return _mapper.Map<List<EnergyHistoryViewmodel>>(historyCollection);
             }
             catch (ArgumentOutOfRangeException)
             {
                 return UnprocessableEntity();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

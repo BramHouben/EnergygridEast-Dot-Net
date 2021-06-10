@@ -8,10 +8,32 @@ services:
       dockerfile: Gateway/Dockerfile
     ports:
         - "8081:80"
+    environment:
+      JWTSECRET: g343g45qa5gaer
 
   energymarketapi:
     image: ${DOCKER_REGISTRY-}energymarketapi
     build:
       context: .
       dockerfile: EnergyMarketApi/Dockerfile
+    ports:
+        - "8082:80"
+    environment:
+      ENERGYMARKET_APIURL: http://shielded-bastion-42632.herokuapp.com/api/login/
+      ENERGYMARKET_USERNAME: NLOost
+      ENERGYMARKET_PASSWORD: "#NLOost2"
+      CONNECTIONSTRING: database=energymarket;keepalive=5;server=energymarket-db;port=3306;user id=energymarket;password=iugerhuerhuefrwhoiuhew;connectiontimeout=5
+    depends_on:
+        - energymarket-db
 
+  energymarket-db:
+    container_name: energymarket-db
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: qwerty
+      MYSQL_DATABASE: energymarket
+      MYSQL_USER: energymarket
+      MYSQL_PASSWORD: iugerhuerhuefrwhoiuhew

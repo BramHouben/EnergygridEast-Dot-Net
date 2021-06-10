@@ -5,6 +5,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\EnergygridEast-Dot-Net</DockerfileContext>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>e6b059ea-32b5-4d3d-9dfd-a7a847bca348</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

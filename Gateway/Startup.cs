@@ -1,15 +1,15 @@
-using System;
-using System.Data;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using System;
+using System.Data;
+using System.Text;
 
 namespace Gateway
 {
@@ -26,13 +26,13 @@ namespace Gateway
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            string secret = Environment.GetEnvironmentVariable("JWTSECRET");
-            if (string.IsNullOrEmpty(secret))
+            string jwtSecret = Environment.GetEnvironmentVariable("JWTSECRET");
+            if (string.IsNullOrEmpty(jwtSecret))
             {
                 throw new NoNullAllowedException("JWTSECRET environment variable not set. This value cannot be empty");
             }
 
-            var key = Encoding.ASCII.GetBytes(secret);
+            var key = Encoding.ASCII.GetBytes(jwtSecret);
 
             services.AddAuthentication(option =>
             {

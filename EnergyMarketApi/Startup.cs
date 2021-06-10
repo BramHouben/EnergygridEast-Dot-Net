@@ -1,19 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text.Json.Serialization;
-using EnergyMarketApi.Dal;
+﻿using EnergyMarketApi.Dal;
 using EnergyMarketApi.Dal.Interface;
 using EnergyMarketApi.Logic;
 using EnergyMarketApi.Model.Helper;
-using EnergyMarketApi.RabbitMq;
-using EnergyMarketApi.RabbitMq.Consumers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using System;
+using System.Data;
+using System.Text.Json.Serialization;
 
 namespace EnergyMarketApi
 {
@@ -52,30 +48,24 @@ namespace EnergyMarketApi
         private void AddDependencyInjection(ref IServiceCollection services)
         {
             services.AddTransient<MarketLogic>();
-            services.AddTransient<BuyConsumer>();
-            services.AddTransient<SellConsumer>();
+            // services.AddTransient<BuyConsumer>();
+            //services.AddTransient<SellConsumer>();
             services.AddTransient<IEnergyHistoryDal, EnergyHistoryDal>();
-            services.AddSingleton(service => AutoMapperConfig.Config.CreateMapper());
-            services.AddSingleton(service => new RabbitMqChannel().GetChannel());
+            services.AddSingleton(AutoMapperConfig.Config.CreateMapper());
+            //services.AddSingleton(new RabbitMqChannel().GetChannel());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            new List<IConsumer>
+            /*new List<IConsumer>
             {
                 app.ApplicationServices.GetService<BuyConsumer>(),
                 app.ApplicationServices.GetService<SellConsumer>()
             }.ForEach(consumer => consumer.Consume());
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            */
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

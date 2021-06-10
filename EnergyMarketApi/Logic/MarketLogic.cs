@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
-using EnergyMarketApi.Dal.Interface;
+﻿using EnergyMarketApi.Dal.Interface;
 using EnergyMarketApi.Enum;
 using EnergyMarketApi.Model.Dto;
 using EnergyMarketApi.Model.RabbitMq;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
 namespace EnergyMarketApi.Logic
 {
@@ -20,6 +21,11 @@ namespace EnergyMarketApi.Logic
         {
             _energyHistoryDal = energyHistoryDal;
             _energyApiUrl = Environment.GetEnvironmentVariable("ENERGYMARKET_APIURL");
+            if (string.IsNullOrEmpty(_energyApiUrl))
+            {
+                throw new NoNullAllowedException("ENERGYMARKET_APIURL empty");
+            }
+
             _bearer = GetBearer().Result;
         }
 
