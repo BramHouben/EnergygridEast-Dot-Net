@@ -19,10 +19,8 @@ namespace Gateway
                     webBuilder.ConfigureAppConfiguration((builder) =>
                     {
                         builder.SetBasePath(Directory.GetCurrentDirectory())
-                            //.AddJsonFile("config/appsettings.Kubernetes.json", true) TODO enable when using Kubernetes
-                            //.AddJsonFile("config/ocelot.Kubernetes.json", true) TODO enable when using Kubernetes
-                            .AddJsonFile("ocelot.Development.json")
-                            .AddJsonFile("appsettings.Development.json")
+                            .AddJsonFile("ocelot.json")
+                            .AddJsonFile("appsettings.json")
                             .AddEnvironmentVariables();
                     });
                     webBuilder.UseStartup<Startup>();
