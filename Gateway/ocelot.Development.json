@@ -143,6 +143,18 @@
       ],
       "UpstreamPathTemplate": "/usage/{everything}",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/energymarket/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "energymarketservice",
+          "Port": 8195
+        }
+      ],
+      "UpstreamPathTemplate": "/energymarket/",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ]
 }

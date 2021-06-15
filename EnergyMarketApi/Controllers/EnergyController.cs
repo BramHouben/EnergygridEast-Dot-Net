@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using EnergyMarketApi.Logic;
-using EnergyMarketApi.Model.Dto;
 using EnergyMarketApi.Model.ToFrontend;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,14 +27,13 @@ namespace EnergyMarketApi.Controllers
         {
             try
             {
-                List<EnergyHistoryDto> historyCollection = await _marketLogic.All(4);
-                return _mapper.Map<List<EnergyHistoryViewmodel>>(historyCollection);
+                return await _marketLogic.All();
             }
             catch (ArgumentOutOfRangeException)
             {
                 return UnprocessableEntity();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }

@@ -1,7 +1,5 @@
-﻿using EnergyMarketApi.Dal.Interface;
-using EnergyMarketApi.Enum;
-using EnergyMarketApi.Model.Dto;
-using EnergyMarketApi.Model.RabbitMq;
+﻿using EnergyMarketApi.Model.RabbitMq;
+using EnergyMarketApi.Model.ToFrontend;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,13 +11,11 @@ namespace EnergyMarketApi.Logic
 {
     public class MarketLogic
     {
-        private readonly IEnergyHistoryDal _energyHistoryDal;
         private readonly string _energyApiUrl;
         private readonly string _bearer;
 
-        public MarketLogic(IEnergyHistoryDal energyHistoryDal)
+        public MarketLogic()
         {
-            _energyHistoryDal = energyHistoryDal;
             _energyApiUrl = Environment.GetEnvironmentVariable("ENERGYMARKET_APIURL");
             if (string.IsNullOrEmpty(_energyApiUrl))
             {
@@ -39,45 +35,28 @@ namespace EnergyMarketApi.Logic
 
             using var httpClient = new HttpClient();
             HttpResponseMessage result = await httpClient.PostAsJsonAsync($"{_energyApiUrl}login", login);
-            return result.Content.ToString();
+            return await result.Content.ReadAsStringAsync();
+        }
+
+        public async Task<List<EnergyHistoryViewmodel>> All()
+        {
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_bearer}");
+            return await httpClient.GetFromJsonAsync<List<EnergyHistoryViewmodel>>($"{_energyApiUrl}offer/own");
         }
 
         public async Task Buy(EnergyRabbitMq energy)
         {
             using var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Bearer ", _bearer);
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_bearer}");
             await httpClient.PostAsJsonAsync($"{_energyApiUrl}buy", energy);
-            await _energyHistoryDal.Add(new EnergyHistoryDto
-            {
-                Balance = energy.Amount,
-                Uuid = energy.OfferId,
-                DateTime = DateTime.UtcNow,
-                EnergyHistoryType = ActionType.Buy
-            });
         }
 
         public async Task Sell(EnergyRabbitMq energy)
         {
             using var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Bearer ", _bearer);
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_bearer}");
             await httpClient.PostAsJsonAsync($"{_energyApiUrl}offer", energy);
-            await _energyHistoryDal.Add(new EnergyHistoryDto
-            {
-                Balance = energy.Amount,
-                Uuid = energy.OfferId,
-                DateTime = DateTime.UtcNow,
-                EnergyHistoryType = ActionType.Sell
-            });
-        }
-
-        public async Task<List<EnergyHistoryDto>> All(int total)
-        {
-            if (total == 0)
-            {
-                throw new ArgumentOutOfRangeException();
-            }
-
-            return await _energyHistoryDal.All(total);
         }
     }
 }

@@ -1,16 +1,11 @@
-using EnergyMarketApi.Dal;
-using EnergyMarketApi.Dal.Interface;
 using EnergyMarketApi.Logic;
 using EnergyMarketApi.Model.Helper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Text.Json.Serialization;
 
 namespace EnergyMarketApi
@@ -27,17 +22,6 @@ namespace EnergyMarketApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRING");
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new NoNullAllowedException("CONNECTIONSTRING variable not set. This is required");
-            }
-
-            services.AddDbContextPool<DataContext>(
-                dbContextOptions => dbContextOptions
-                    .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)))
-                .AddTransient<DataContext>();
-
             services.AddControllers().AddJsonOptions(opts =>
             {
                 opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
@@ -50,11 +34,11 @@ namespace EnergyMarketApi
         private void AddDependencyInjection(ref IServiceCollection services)
         {
             services.AddTransient<MarketLogic>();
+            services.AddTransient<JwtLogic>();
             services.AddTransient<BuyConsumer>();
             services.AddTransient<SellConsumer>();
-            services.AddTransient<IEnergyHistoryDal, EnergyHistoryDal>();
-            services.AddSingleton(AutoMapperConfig.Config.CreateMapper());
-            services.AddSingleton(new RabbitMqChannel().GetChannel());
+            services.AddSingleton(service => AutoMapperConfig.Config.CreateMapper());
+            services.AddSingleton(service => new RabbitMqChannel().GetChannel());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,22 +51,18 @@ namespace EnergyMarketApi
             }.ForEach(consumer => consumer.Consume());
 
             app.UseRouting();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
-            UpdateDatabase(app);
-        }
-
-        private static void UpdateDatabase(IApplicationBuilder app)
-        {
-            var serviceScope = app.ApplicationServices
-                .GetRequiredService<IServiceScopeFactory>()
-                .CreateScope();
-            var context = serviceScope.ServiceProvider.GetService<DataContext>();
-            context.Database.Migrate();
         }
     }
 }
