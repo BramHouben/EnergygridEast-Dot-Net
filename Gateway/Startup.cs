@@ -46,6 +46,8 @@ namespace Gateway
                 builder.AllowAnyMethod();
                 builder.AllowAnyHeader();
             });
+
+            app.UseWebSockets();
             app.UseAuthentication();
             app.UseOcelot();
         }
