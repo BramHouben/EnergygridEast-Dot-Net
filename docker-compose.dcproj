@@ -3,15 +3,12 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>50042d22-64a5-4e3f-9800-09f748bf1183</ProjectGuid>
+    <ProjectGuid>170d6d4c-dda6-4fb8-866d-074256dd31ee</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/weatherforecast</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>energymarketapi</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yml</DependentUpon>
-    </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>

@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Text;
-using Gateway.Models.HelperFiles;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
@@ -25,28 +21,6 @@ namespace Gateway
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var jwtConfig = Configuration
-                .GetSection("JwtConfig")
-                .Get<JwtConfig>();
-            string secret = jwtConfig.Secret;
-            var key = Encoding.ASCII.GetBytes(secret);
-
-            services.AddAuthentication(option =>
-            {
-                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuerSigningKey = true,
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
-            });
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -72,6 +46,8 @@ namespace Gateway
                 builder.AllowAnyMethod();
                 builder.AllowAnyHeader();
             });
+
+            app.UseWebSockets();
             app.UseAuthentication();
             app.UseOcelot();
         }

@@ -37,6 +37,18 @@
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
+      "DownstreamPathTemplate": "/authentication/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "authenticationservice",
+          "Port": 8100
+        }
+      ],
+      "UpstreamPathTemplate": "/authentication/",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
       "DownstreamPathTemplate": "/authentication/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -82,6 +94,18 @@
         }
       ],
       "UpstreamPathTemplate": "/user",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/user/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "userservice",
+          "Port": 8130
+        }
+      ],
+      "UpstreamPathTemplate": "/user/",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     },
     {
@@ -146,7 +170,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/ws/update/{everything}",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "ws",
       "DownstreamHostAndPorts": [
         {
           "Host": "websocketsservice",
@@ -154,6 +178,54 @@
         }
       ],
       "UpstreamPathTemplate": "/api/ws/update/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ws-energy-grid/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "websocketsservice",
+          "Port": 8443
+        }
+      ],
+      "UpstreamPathTemplate": "/ws-energy-grid/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/simulation/nuclear/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationnuclearservice",
+          "Port": 8180
+        }
+      ],
+      "UpstreamPathTemplate": "/simulation/nuclear/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/scenario/nuclear/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "simulationnuclearservice",
+          "Port": 8180
+        }
+      ],
+      "UpstreamPathTemplate": "/scenario/nuclear/{everything}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/energymarket/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "energymarketservice",
+          "Port": 8195
+        }
+      ],
+      "UpstreamPathTemplate": "/energymarket/",
       "UpstreamHttpMethod": [ "GET", "PUT", "POST", "DELETE" ]
     }
   ]

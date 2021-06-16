@@ -1,8 +1,11 @@
-﻿using System;
+﻿using EnergyMarketApi.Model.RabbitMq;
+using EnergyMarketApi.Model.ToFrontend;
+using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using EnergyMarketApi.Model.RabbitMq;
 
 namespace EnergyMarketApi.Logic
 {
@@ -14,10 +17,15 @@ namespace EnergyMarketApi.Logic
         public MarketLogic()
         {
             _energyApiUrl = Environment.GetEnvironmentVariable("ENERGYMARKET_APIURL");
+            if (string.IsNullOrEmpty(_energyApiUrl))
+            {
+                throw new NoNullAllowedException("ENERGYMARKET_APIURL empty");
+            }
+
             _bearer = GetBearer().Result;
         }
 
-        public async Task<string> GetBearer()
+        private async Task<string> GetBearer()
         {
             var login = new
             {
@@ -27,20 +35,27 @@ namespace EnergyMarketApi.Logic
 
             using var httpClient = new HttpClient();
             HttpResponseMessage result = await httpClient.PostAsJsonAsync($"{_energyApiUrl}login", login);
-            return result.Content.ToString();
+            return await result.Content.ReadAsStringAsync();
+        }
+
+        public async Task<List<EnergyHistoryViewmodel>> All()
+        {
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_bearer}");
+            return await httpClient.GetFromJsonAsync<List<EnergyHistoryViewmodel>>($"{_energyApiUrl}offer/own");
         }
 
         public async Task Buy(EnergyRabbitMq energy)
         {
             using var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Bearer ", _bearer);
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_bearer}");
             await httpClient.PostAsJsonAsync($"{_energyApiUrl}buy", energy);
         }
 
         public async Task Sell(EnergyRabbitMq energy)
         {
             using var httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.Add("Bearer ", _bearer);
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_bearer}");
             await httpClient.PostAsJsonAsync($"{_energyApiUrl}offer", energy);
         }
     }
